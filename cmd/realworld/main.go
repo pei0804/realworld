@@ -3,6 +3,8 @@
 package main
 
 import (
+	"github.com/go-openapi/runtime/middleware"
+	"github.com/pei0804/realworld/handler"
 	"log"
 	"os"
 
@@ -47,6 +49,10 @@ func main() {
 		}
 		os.Exit(code)
 	}
+
+	api.GetGreetingHandler = realworld.GetGreetingHandlerFunc(func(params realworld.GetGreetingParams) middleware.Responder {
+		return handler.GetGreeting(params)
+	})
 
 	server.ConfigureAPI()
 

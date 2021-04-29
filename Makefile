@@ -4,13 +4,10 @@ deps:
 
 .PHONY: gen
 gen:
-	swagger generate server \
-	--api-package realworld \
-	--name realworld \
+	swagger generate model \
+	--model-package realworld \
 	--target generated \
 	--spec ./swagger/swagger.yml \
-	--strict-additional-properties \
-	--exclude-main
 
 .PHONY: install
 install:
@@ -23,3 +20,7 @@ run:
 .PHONY: open
 open:
 	open http://localhost:3000/hello?name=hello-go-swagger
+
+.PHONY: fmt
+fmt:
+	go fmt ./...
